@@ -2,52 +2,57 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AppHotel.MainPage"
-             Title="Hotel" BackgroundColor="#F4F7FA">
+             Title="AppHotel" BackgroundColor="#F1F5F9">
     <ScrollView>
-        <VerticalStackLayout Padding="22,28" Spacing="18" MaximumWidthRequest="650">
-            <Border BackgroundColor="#0F6474" StrokeThickness="0" StrokeShape="RoundRectangle 16" Padding="22">
-                <VerticalStackLayout Spacing="6">
-                    <Label Text="HOTEL" TextColor="#C5F4F2" FontAttributes="Bold" FontSize="13"/>
-                    <Label Text="Planeje sua hospedagem" TextColor="White" FontAttributes="Bold" FontSize="26" />
-                    <Label Text="Escolha o quarto, as datas e a quantidade de hóspedes." TextColor="White" FontSize="13" />
+        <VerticalStackLayout Padding="22,28" Spacing="17" MaximumWidthRequest="650">
+            <Border BackgroundColor="#1E3A8A" StrokeThickness="0" StrokeShape="RoundRectangle 18" Padding="24">
+                <VerticalStackLayout Spacing="7">
+                    <Label Text="APPHOTEL  |  AGENDA 14" TextColor="#BFDBFE" FontAttributes="Bold" FontSize="12" />
+                    <Label Text="Sua hospedagem, sem complicação" TextColor="White" FontAttributes="Bold" FontSize="26" />
+                    <Label Text="Escolha o quarto e personalize sua estadia." TextColor="#DBEAFE" FontSize="14" />
                 </VerticalStackLayout>
             </Border>
 
-            <Border BackgroundColor="White" Stroke="#DFE6ED" StrokeShape="RoundRectangle 14" Padding="20">
+            <Border BackgroundColor="White" Stroke="#CBD5E1" StrokeShape="RoundRectangle 15" Padding="20">
                 <VerticalStackLayout Spacing="12">
-                    <Label Text="Dados da reserva" FontSize="20" FontAttributes="Bold" TextColor="#183044" />
-                    <Label Text="Tipo de quarto" TextColor="#183044" FontAttributes="Bold" />
-                    <Picker Title="Selecione um quarto" TextColor="#183044" TitleColor="#60778C"
-                            SelectedItem="{Binding TipoQuarto, Mode=TwoWay}">
-                        <Picker.Items>
-                            <x:String>Quarto Standard</x:String>
-                            <x:String>Quarto Luxo</x:String>
-                            <x:String>Suite Premium</x:String>
-                        </Picker.Items>
-                    </Picker>
-                    <Label Text="Número de hóspedes" TextColor="#183044" FontAttributes="Bold" />
+                    <Label Text="Dados da reserva" TextColor="#0F172A" FontAttributes="Bold" FontSize="21" />
+                    <Label Text="Tipo de quarto" TextColor="#334155" FontAttributes="Bold" />
+                    <Picker x:Name="pck_quarto" Title="Selecione um quarto"
+                            TitleColor="#64748B" TextColor="#0F172A"
+                            ItemDisplayBinding="{Binding Descricao}"
+                            SelectedItem="{Binding QuartoSelecionado, Mode=TwoWay}" />
+
+                    <Label Text="Quantidade de hóspedes" TextColor="#334155" FontAttributes="Bold" />
                     <Grid ColumnDefinitions="*,Auto" ColumnSpacing="12">
-                        <Label Text="{Binding QuantidadeHospedes, StringFormat='Hóspedes: {0:F0}'}" TextColor="#183044" VerticalOptions="Center" />
-                        <Stepper Grid.Column="1" Minimum="1" Maximum="10" Increment="1" Value="{Binding QuantidadeHospedes, Mode=TwoWay}" />
+                        <Label Text="{Binding QuantidadeHospedes, StringFormat='Hóspedes: {0:F0}'}"
+                               TextColor="#0F172A" VerticalOptions="Center" />
+                        <Stepper Grid.Column="1" Minimum="1" Maximum="10" Increment="1"
+                                 Value="{Binding QuantidadeHospedes, Mode=TwoWay}" />
                     </Grid>
-                    <Label Text="Data de entrada" TextColor="#183044" FontAttributes="Bold" />
-                    <DatePicker Date="{Binding DataEntrada, Mode=TwoWay}" Format="dd/MM/yyyy" TextColor="#183044" />
-                    <Label Text="Data de saída" TextColor="#183044" FontAttributes="Bold" />
-                    <DatePicker Date="{Binding DataSaida, Mode=TwoWay}" Format="dd/MM/yyyy" TextColor="#183044" />
+
+                    <Label Text="Data de entrada" TextColor="#334155" FontAttributes="Bold" />
+                    <DatePicker x:Name="dtp_entrada" Date="{Binding DataEntrada, Mode=TwoWay}"
+                                DateSelected="OnEntradaDateSelected" Format="dd/MM/yyyy" TextColor="#0F172A" />
+                    <Label Text="Data de saída" TextColor="#334155" FontAttributes="Bold" />
+                    <DatePicker x:Name="dtp_saida" Date="{Binding DataSaida, Mode=TwoWay}"
+                                DateSelected="OnSaidaDateSelected" Format="dd/MM/yyyy" TextColor="#0F172A" />
+                    <Label Text="A saída deve ser posterior à entrada." TextColor="#64748B" FontSize="12" />
                 </VerticalStackLayout>
             </Border>
 
-            <Border BackgroundColor="White" Stroke="#DFE6ED" StrokeShape="RoundRectangle 14" Padding="20">
+            <Border BackgroundColor="White" Stroke="#CBD5E1" StrokeShape="RoundRectangle 15" Padding="20">
                 <VerticalStackLayout Spacing="8">
-                    <Label Text="Prévia do valor" FontSize="18" FontAttributes="Bold" TextColor="#183044" />
-                    <Label Text="{Binding Diarias, StringFormat='Duração: {0} diária(s)'}" TextColor="#183044" />
-                    <Label Text="{Binding ValorDiariaFormatado, StringFormat='Valor por hóspede / diária: {0}'}" TextColor="#60778C" FontSize="13" />
-                    <Label Text="{Binding TotalFormatado}" TextColor="#087D88" FontAttributes="Bold" FontSize="29" />
+                    <Label Text="Prévia da hospedagem" FontSize="19" FontAttributes="Bold" TextColor="#0F172A" />
+                    <Label Text="{Binding Diarias, StringFormat='Duração: {0} diária(s)'}" TextColor="#334155" />
+                    <Label Text="{Binding ValorDiariaFormatado, StringFormat='Valor por hóspede / diária: {0}'}" TextColor="#64748B" FontSize="13" />
+                    <Label Text="{Binding TotalFormatado}" TextColor="#1D4ED8" FontAttributes="Bold" FontSize="30" />
                 </VerticalStackLayout>
             </Border>
 
-            <Button Text="Calcular hospedagem" Clicked="OnCalcularClicked" BackgroundColor="#087D88" TextColor="White" CornerRadius="10" HeightRequest="50" />
-            <Button Text="Sobre o aplicativo" Clicked="OnSobreClicked" BackgroundColor="#E4EEF1" TextColor="#17394D" CornerRadius="10" HeightRequest="46" />
+            <Button Text="Calcular hospedagem" Clicked="OnCalcularClicked"
+                    BackgroundColor="#2563EB" TextColor="White" CornerRadius="11" HeightRequest="52" />
+            <Button Text="Sobre o aplicativo" Clicked="OnSobreClicked"
+                    BackgroundColor="#DBEAFE" TextColor="#1E3A8A" CornerRadius="11" HeightRequest="48" />
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

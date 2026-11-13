@@ -9,11 +9,11 @@
             <Label Text="Conheça o aplicativo e seu desenvolvedor." FontSize="14" TextColor="#60778C" />
             <Border BackgroundColor="White" Stroke="#DFE6ED" StrokeShape="RoundRectangle 14" Padding="22">
                 <VerticalStackLayout Spacing="12">
-                    <Label Text="Recuperação - Agenda 13" FontSize="20" FontAttributes="Bold" TextColor="#183044" />
-                    <Label Text="Aplicativo de simulação de hospedagem desenvolvido com .NET MAUI, XAML e C#." TextColor="#183044" />
+                    <Label Text="Recuperação - Agendas 13 e 14" FontSize="20" FontAttributes="Bold" TextColor="#183044" />
+                    <Label Text="Aplicativo de simulação de hospedagem com validação de datas, lista de quartos e orientação a objetos." TextColor="#183044" />
                     <BoxView HeightRequest="1" Color="#DFE6ED" />
                     <Label Text="Desenvolvedor" FontAttributes="Bold" TextColor="#087D88" />
-                    <Label Text="Joao Gabriel" TextColor="#183044" />
+                    <Label Text="[COLOQUE SEU NOME AQUI]" TextColor="#183044" />
                     <Label Text="Curso" FontAttributes="Bold" TextColor="#087D88" />
                     <Label Text="Técnico em Desenvolvimento de Sistemas" TextColor="#183044" />
                     <Label Text="Tecnologias" FontAttributes="Bold" TextColor="#087D88" />
