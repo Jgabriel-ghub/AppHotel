@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AppHotel.MainPage"
+             Title="Hotel" BackgroundColor="#F4F7FA">
+    <ScrollView>
+        <VerticalStackLayout Padding="22,28" Spacing="18" MaximumWidthRequest="650">
+            <Border BackgroundColor="#0F6474" StrokeThickness="0" StrokeShape="RoundRectangle 16" Padding="22">
+                <VerticalStackLayout Spacing="6">
+                    <Label Text="HOTEL" TextColor="#C5F4F2" FontAttributes="Bold" FontSize="13"/>
+                    <Label Text="Planeje sua hospedagem" TextColor="White" FontAttributes="Bold" FontSize="26" />
+                    <Label Text="Escolha o quarto, as datas e a quantidade de hóspedes." TextColor="White" FontSize="13" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Border BackgroundColor="White" Stroke="#DFE6ED" StrokeShape="RoundRectangle 14" Padding="20">
+                <VerticalStackLayout Spacing="12">
+                    <Label Text="Dados da reserva" FontSize="20" FontAttributes="Bold" TextColor="#183044" />
+                    <Label Text="Tipo de quarto" TextColor="#183044" FontAttributes="Bold" />
+                    <Picker Title="Selecione um quarto" TextColor="#183044" TitleColor="#60778C"
+                            SelectedItem="{Binding TipoQuarto, Mode=TwoWay}">
+                        <Picker.Items>
+                            <x:String>Quarto Standard</x:String>
+                            <x:String>Quarto Luxo</x:String>
+                            <x:String>Suite Premium</x:String>
+                        </Picker.Items>
+                    </Picker>
+                    <Label Text="Número de hóspedes" TextColor="#183044" FontAttributes="Bold" />
+                    <Grid ColumnDefinitions="*,Auto" ColumnSpacing="12">
+                        <Label Text="{Binding QuantidadeHospedes, StringFormat='Hóspedes: {0:F0}'}" TextColor="#183044" VerticalOptions="Center" />
+                        <Stepper Grid.Column="1" Minimum="1" Maximum="10" Increment="1" Value="{Binding QuantidadeHospedes, Mode=TwoWay}" />
+                    </Grid>
+                    <Label Text="Data de entrada" TextColor="#183044" FontAttributes="Bold" />
+                    <DatePicker Date="{Binding DataEntrada, Mode=TwoWay}" Format="dd/MM/yyyy" TextColor="#183044" />
+                    <Label Text="Data de saída" TextColor="#183044" FontAttributes="Bold" />
+                    <DatePicker Date="{Binding DataSaida, Mode=TwoWay}" Format="dd/MM/yyyy" TextColor="#183044" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Border BackgroundColor="White" Stroke="#DFE6ED" StrokeShape="RoundRectangle 14" Padding="20">
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="Prévia do valor" FontSize="18" FontAttributes="Bold" TextColor="#183044" />
+                    <Label Text="{Binding Diarias, StringFormat='Duração: {0} diária(s)'}" TextColor="#183044" />
+                    <Label Text="{Binding ValorDiariaFormatado, StringFormat='Valor por hóspede / diária: {0}'}" TextColor="#60778C" FontSize="13" />
+                    <Label Text="{Binding TotalFormatado}" TextColor="#087D88" FontAttributes="Bold" FontSize="29" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Button Text="Calcular hospedagem" Clicked="OnCalcularClicked" BackgroundColor="#087D88" TextColor="White" CornerRadius="10" HeightRequest="50" />
+            <Button Text="Sobre o aplicativo" Clicked="OnSobreClicked" BackgroundColor="#E4EEF1" TextColor="#17394D" CornerRadius="10" HeightRequest="46" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
